@@ -20,6 +20,7 @@
             <tree>
                 <!-- Add your fields here -->
                 <field name="name"/>
+                <field name="image" widget="image" class="oe_avatar"/>
                 <field name="penulis"/>
                 <field name="publisher"/>
                 <field name="tgl_publish"/>
@@ -39,6 +40,7 @@
                     <group>
                         <!-- Add your fields here -->
                         <field name="name"/>
+                        <field name="image" widget="image"/>
                         <field name="penulis"/>
                         <field name="publisher"/>
                         <field name="tgl_publish"/>

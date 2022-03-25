@@ -42,10 +42,12 @@
                         <field name="name"/>
                         <field name="peminjaman_id"/>
                         <field name="peminjam_id"/>
+                        <!-- <field name="detailpeminjaman_ids"/> -->
+                    </group>
+                    <group>
                         <field name="tgl_kembali"/>
                         <field name="tgl_pengembalian"/>
                         <field name="denda"/>
-                        <!-- <field name="detailpeminjaman_ids"/> -->
                     </group>
                     <!-- <group>
                         <field name="detailpengembalian_ids">

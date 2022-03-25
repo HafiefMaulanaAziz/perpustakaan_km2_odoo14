@@ -41,3 +41,15 @@ class Pengembalian(models.Model):
                 record.denda = 2000*diff_days if diff_days > 0 else 0
             else :
                 record.denda = 0
+
+    @api.model
+    def create(self, vals):
+        record = super(Pengembalian, self).create(vals)
+        if record.tgl_pengembalian:
+            self.env['perpus.peminjaman'].search([('id', '=', record.peminjaman_id.id)]).write({'is_kembali':True})
+            return record
+
+    def unlink(self):
+        for un in self:
+            self.env['perpus.peminjaman'].search([('id', '=', un.peminjaman_id.id)]).write({'is_kembali':False})
+        super(Pengembalian, self).unlink()

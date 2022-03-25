@@ -6,6 +6,7 @@ class Buku(models.Model):
     _description = 'Model Buku'
 
     name = fields.Char(string='Judul Buku')
+    image = fields.Image('image')
     stok = fields.Integer('Stok')
     penulis = fields.Char('Penulis')
     publisher = fields.Char('Publisher')

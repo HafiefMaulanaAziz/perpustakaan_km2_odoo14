@@ -13,6 +13,7 @@ class Peminjaman(models.Model):
     lamapinjam = fields.Integer('Lama Pinjam/Hari')
     tgl_pinjam = fields.Date('Tanggal Pinjam', default=fields.Date.today())
     tgl_kembali = fields.Date(compute='_compute_tgl_kembali', string='Tanggal Kembali', store=True)
+    is_kembali = fields.Boolean('Sudah Kembali', deafult=False)
     
     @api.depends('lamapinjam')
     def _compute_tgl_kembali(self):
@@ -41,3 +42,5 @@ class DetailPeminjaman(models.Model):
         if record.qty:
             self.env['perpus.buku'].search([('id', '=', record.buku_id.id)]).write({'stok':record.buku_id.stok-record.qty})
             return record
+
+
