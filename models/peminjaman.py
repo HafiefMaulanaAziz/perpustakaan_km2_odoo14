@@ -19,6 +19,7 @@ class Peminjaman(models.Model):
     def _compute_tgl_kembali(self):
         for record in self:
             record.tgl_kembali = record.tgl_pinjam + datetime.timedelta(days=record.lamapinjam)
+    
 
 class DetailPeminjaman(models.Model):
     _name = 'perpus.detailpeminjaman'
@@ -42,5 +43,7 @@ class DetailPeminjaman(models.Model):
         if record.qty:
             self.env['perpus.buku'].search([('id', '=', record.buku_id.id)]).write({'stok':record.buku_id.stok-record.qty})
             return record
+
+    
 
 

@@ -42,7 +42,12 @@
                         <field name="name"/>
                         <field name="peminjaman_id"/>
                         <field name="peminjam_id"/>
-                        <!-- <field name="detailpeminjaman_ids"/> -->
+                        <field name="detailpengembalian_ids">
+                            <tree>
+                                <field name="buku_id"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
                     </group>
                     <group>
                         <field name="tgl_kembali"/>

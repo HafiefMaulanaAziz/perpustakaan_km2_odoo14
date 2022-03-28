@@ -21,8 +21,8 @@
                 <!-- Add your fields here -->
                 <field name="name"/>
                 <field name="image" widget="image" class="oe_avatar"/>
-                <field name="penulis"/>
-                <field name="publisher"/>
+                <field name="penulis_id"/>
+                <field name="publisher_id"/>
                 <field name="tgl_publish"/>
                 <field name="kategori_ids" widget="many2many_tags"/>
                 <field name="stok"/>
@@ -41,8 +41,8 @@
                         <!-- Add your fields here -->
                         <field name="name"/>
                         <field name="image" widget="image"/>
-                        <field name="penulis"/>
-                        <field name="publisher"/>
+                        <field name="penulis_id"/>
+                        <field name="publisher_id"/>
                         <field name="tgl_publish"/>
                         <field name="rak_id"/>
                         <field name="kategori_ids" widget="many2many_tags"/>

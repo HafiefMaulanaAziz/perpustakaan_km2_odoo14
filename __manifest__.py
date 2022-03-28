@@ -35,6 +35,8 @@
         'views/peminjaman.xml',
         'views/pengembalian.xml',
         'views/anggota.xml',
+        'views/penulis.xml',
+        'views/publisher.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

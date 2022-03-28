@@ -6,10 +6,10 @@ class Buku(models.Model):
     _description = 'Model Buku'
 
     name = fields.Char(string='Judul Buku')
-    image = fields.Image('image')
+    image = fields.Image('Image')
     stok = fields.Integer('Stok')
-    penulis = fields.Char('Penulis')
-    publisher = fields.Char('Publisher')
+    penulis_id = fields.Many2one('res.partner', string='Penulis', domain=[('is_penulis', '=', True)])
+    publisher_id = fields.Many2one('res.partner', string='Publisher', domain=[('is_publisher', '=', True)])
     tgl_publish = fields.Date('Tanggal Publish')
     kategori_ids = fields.Many2many('perpus.kategori', string='Kategori')
     rak_id = fields.Many2one('perpus.rak', string='Rak')

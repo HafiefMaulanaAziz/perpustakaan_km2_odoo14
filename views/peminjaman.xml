@@ -44,7 +44,7 @@
                         <field name="tgl_pinjam"/>
                         <field name="lamapinjam"/>
                         <field name="tgl_kembali"/>
-                        <field name="is_kembali" readonly="1"/>
+                        <field name="is_kembali"/>
                     </group>
                     <group>
                         <field name="detailpeminjaman_ids">

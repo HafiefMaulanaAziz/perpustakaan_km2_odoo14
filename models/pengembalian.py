@@ -6,25 +6,18 @@ class Pengembalian(models.Model):
     _description = 'Model Pengembalian'
 
     name = fields.Char(string='Name')
-    peminjaman_id = fields.Many2one('perpus.peminjaman', string='ID Peminjaman')
+    peminjaman_id = fields.Many2one('perpus.peminjaman', string='ID Peminjaman', domain=[('is_kembali', '=', False)])
+    detailpengembalian_ids = fields.One2many(related='peminjaman_id.detailpeminjaman_ids',string='detailpengembalian', compute='_compute_detail_peminjaman_id')
     tgl_pengembalian = fields.Date('Tanggal Pengembalian', default=fields.Date.today())
     tgl_kembali = fields.Date(compute='_compute_tgl_kembali', string='Tanggal Kembali')
+    denda = fields.Integer(compute='_compute_denda', string='Denda Keterlambatan', store=True)
+    peminjam_id = fields.Many2one(comodel_name='res.partner', compute='_compute_peminjam_id', string='ID Peminjam')
+
     
     @api.depends('peminjaman_id')
     def _compute_tgl_kembali(self):
         for record in self:
             record.tgl_kembali = record.peminjaman_id.tgl_kembali
-
-    
-    denda = fields.Integer(compute='_compute_denda', string='Denda Keterlambatan')
-    peminjam_id = fields.Many2one(comodel_name='res.partner', compute='_compute_peminjam_id', string='ID Peminjam')
-    # detailpeminjaman_ids = fields.Char(compute='_compute_detailpeminjaman_ids', string='detailpeminjaman_ids')
-    
-    # @api.depends('peminjaman_id')
-    # def _compute_detailpeminjaman_ids(self):
-    #     for record in self:
-    #         record.detailpeminjaman_ids = self.env['perpus.detailpeminjaman'].search([('peminjaman_id', '=', record.peminjaman_id.id)])
-        
     
     @api.depends('peminjaman_id')
     def _compute_peminjam_id(self):
@@ -49,7 +42,12 @@ class Pengembalian(models.Model):
             self.env['perpus.peminjaman'].search([('id', '=', record.peminjaman_id.id)]).write({'is_kembali':True})
             return record
 
+
     def unlink(self):
         for un in self:
             self.env['perpus.peminjaman'].search([('id', '=', un.peminjaman_id.id)]).write({'is_kembali':False})
         super(Pengembalian, self).unlink()
+
+
+
+
