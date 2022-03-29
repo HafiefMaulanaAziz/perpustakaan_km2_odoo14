@@ -40,6 +40,10 @@ class Pengembalian(models.Model):
         record = super(Pengembalian, self).create(vals)
         if record.tgl_pengembalian:
             self.env['perpus.peminjaman'].search([('id', '=', record.peminjaman_id.id)]).write({'is_kembali':True})
+
+            for detail in record.detailpengembalian_ids:
+                self.env['perpus.buku'].search([('id', '=', detail.buku_id.id)]).write({'stok': detail.buku_id.stok + detail.qty})
+                
             return record
 
 
