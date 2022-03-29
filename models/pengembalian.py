@@ -44,7 +44,7 @@ class Pengembalian(models.Model):
             for detail in record.detailpengembalian_ids:
                 self.env['perpus.buku'].search([('id', '=', detail.buku_id.id)]).write({'stok': detail.buku_id.stok + detail.qty})
                 
-            return record
+        return record
 
 
     def unlink(self):
