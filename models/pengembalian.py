@@ -50,6 +50,8 @@ class Pengembalian(models.Model):
     def unlink(self):
         for un in self:
             self.env['perpus.peminjaman'].search([('id', '=', un.peminjaman_id.id)]).write({'is_kembali':False})
+            for detail in un.detailpengembalian_ids:
+                self.env['perpus.buku'].search([('id', '=', detail.buku_id.id)]).write({'stok': detail.buku_id.stok - detail.qty})
         super(Pengembalian, self).unlink()
 
 
